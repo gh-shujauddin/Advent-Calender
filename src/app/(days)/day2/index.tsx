@@ -1,10 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { Stack } from 'expo-router'
 
 const index = () => {
   return (
     <View>
-      <Text>Day 1</Text>
+      <Stack.Screen options={{title: 'Day 2'}}/>
+
+      <Text>Day 2</Text>
     </View>
   )
 }
