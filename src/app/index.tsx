@@ -1,11 +1,12 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import DayListItem from '@components/core/DayListItem';
 
-const days = [...Array(24)].map((value,index) => index+1)
+const days = [...Array(24)].map((value, index) => index + 1)
 
 export default function HomeScreen() {
-  
+
   return (
     <View style={styles.container}>
 
@@ -14,8 +15,7 @@ export default function HomeScreen() {
         contentContainerStyle={styles.content}
         columnWrapperStyle={styles.column}
         numColumns={2}
-        renderItem={({item}) => <DayListItem day={item}/>
-        }
+        renderItem={({ item }) => <DayListItem day={item} />}
       />
 
       <StatusBar style="auto" />
