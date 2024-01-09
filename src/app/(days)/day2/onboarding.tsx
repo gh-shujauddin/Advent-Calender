@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Stack, router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 
-import Animated, { FadeIn, FadeOut, SlideInRight, SlideInLeft, SlideOutLeft } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOut, SlideInRight, SlideOutLeft } from 'react-native-reanimated';
 const onboardingSteps = [
   {
     icon: 'snowflake',
@@ -14,7 +14,7 @@ const onboardingSteps = [
   {
     icon: 'people-arrows',
     title: 'Learn and grow together',
-    description: 'Learn by building 24 projects with React Native and Expo'
+    description: 'Learning by building 24 projects with React Native and Expo'
   },
   {
     icon: 'book-reader',

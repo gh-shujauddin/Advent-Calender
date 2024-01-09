@@ -7,7 +7,6 @@ type DayListItem = {
 }
 
 export default function DayListItem({ day }: DayListItem) {
-  console.log(day);
   return (
     <Link href={`/day${day}`} asChild>
       <Pressable style={styles.box}>
