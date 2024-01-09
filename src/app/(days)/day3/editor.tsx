@@ -1,8 +1,7 @@
-import { StyleSheet, View, Text, Pressable } from 'react-native'
+import { StyleSheet, View, Text, Pressable, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import MarkdownDisplay from '@/components/day3/MarkdownDisplay';
 import { Stack } from 'expo-router';
-import { TextInput } from 'react-native-gesture-handler';
 
 const template = `
 # Markdown Editor
