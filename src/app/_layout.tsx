@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Stack } from "expo-router";
 import { useEffect } from 'react';
 import { useFonts, Inter_600SemiBold, Inter_700Bold, Inter_400Regular, Inter_900Black } from '@expo-google-fonts/inter';
 import { AmaticSC_400Regular, AmaticSC_700Bold } from '@expo-google-fonts/amatic-sc';
-import * as SplashScreen from 'expo-splash-screen';
+// import * as SplashScreen from 'expo-splash-screen';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import AnimatedSplashScreen from "@/components/day4/AnimatedSplashScreen"
+import Animated, { FadeIn } from "react-native-reanimated";
 
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+
+  const [appReady, setAppReady] = useState(false);
+  const [splashAnimationFinished, setSplashAnimationFinished] = useState(false);
+
   const [fontLoaded, fontError] = useFonts({
     Inter: Inter_400Regular,
     InterSemi: Inter_600SemiBold,
@@ -20,18 +26,35 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (fontLoaded || fontError) {
-      SplashScreen.hideAsync();
+      // SplashScreen.hideAsync();
+      setAppReady(true);
     }
   }, [fontLoaded, fontError]);
 
-  if (!fontLoaded && !fontError) {
-    return null;
+
+  console.log(appReady, splashAnimationFinished);
+
+
+  if (!appReady || !splashAnimationFinished) {
+    return <AnimatedSplashScreen
+      onAnimationFinish={(isCancelled) => {
+        console.log('Finished: ', isCancelled);
+        if (!isCancelled) {
+          setSplashAnimationFinished(true);
+        }
+      }
+      } />;
+
   }
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
-      <Stack screenOptions={{}}>
-        <Stack.Screen name="index" options={{ title: 'Advent Calender' }} />
-      </Stack>
+
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Animated.View entering={FadeIn} style={{ flex: 1 }}>
+        <Stack screenOptions={{}}>
+          <Stack.Screen name="index" options={{ title: 'Advent Calender' }} />
+        </Stack>
+      </Animated.View>
+
     </GestureHandlerRootView>
   );
 }
